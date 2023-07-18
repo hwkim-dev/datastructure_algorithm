@@ -1,5 +1,5 @@
-<h>bubble sort</h>
- ```bash
+ ## bubble sort
+```bash
    bubbleSort(A, N)
    flag = 1
    while flag
