@@ -8,6 +8,23 @@ C-language for studing datastructure &amp; algorithm
     </p>
     <li><h2>sort algorithms</h2></li>
     <p>
+        <ol>
+            <li>insertion sort</li>
+            <p>
+            d
+            </p>
+'''c
+insertionSort(A,N)
+{
+    for i = 1 to N - 1;
+    
+}
+'''
+            <p>
+            </p>
+            <li>bubble sort</li>
+            <li>selection sort</li>
+        </ol>
     </p>
     <li><h2>stable sort</h2></li>
     <p>
