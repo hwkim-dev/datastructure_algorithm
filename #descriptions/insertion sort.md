@@ -1,5 +1,4 @@
-#insertion sort
-## insertion sort
+ ## insertion sort
 ```bash
 insertionSort(A, N)
   for i = 1 to N-1
