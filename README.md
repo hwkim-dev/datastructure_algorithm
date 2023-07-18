@@ -13,7 +13,8 @@ C-language for studing datastructure &amp; algorithm
 | stack | [🔗](stack) |
 | hash | [🔗](hash) |
 | linear search | [🔗](linear-search) |
-  ## shell sort
+
+ ## shell sort
 ```bash
 insertionSort(A, N)
   for i = 1 to N-1
@@ -24,7 +25,7 @@ insertionSort(A, N)
       j--
     A[j+1] = v
 ```
-  ## insertion sort
+<h>insertion sort</h>
   <p>
   </p>
   
@@ -56,6 +57,6 @@ insertionSort(A, N)
   <p>
   </p>
   
-  ## linear search
+<h>linear search</h>
   <p>
   </p>
