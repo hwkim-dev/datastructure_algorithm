@@ -44,75 +44,54 @@ int h2(int key)
     return 1 + (key % (M-1));
 }
 
-int h(int key, int i)
+int find(char str[])
 {
-    return (h1(key) + i * h2(key)) & M;
+	long long key, i , h;
+	key = getkey(str);
+	for(i = 0;; i++)
+	{
+		h = (h1(key)) + i * h2(key) % M;
+		if(strcmp(H[h], str) == 0) return 1;
+		else if(strlen(H[h]) == 0) return 0;
+	}
+	return 0;
 }
 
-int insert(char *T, int key)
+int insert(char str[])
 {
-    int i = 0;
-    while(1)
-    {
-        int j = h(key, i);
-        if(T[j] == NIL)
-        {
-            T[j] = key;
-            return j;
-        }else
-        {
-            i = i + 1;
-        }
-    }
+	long long key, i, h;
+	key = getkey(str);
+	
+	for(i = 0;; i++)
+	{
+		h = (h1(key) + i * h2(key)) % M;
+		if(strcmp(H[h], str) == 0) return 1;
+		else if(strlen(H[h]) == 0)
+		{
+			strcpy(H[h], str);
+			return 0;
+		}
+	}
 }
 
-int search(char *T, int key)
-{
-    int i = 0;
-    while(1)
-    {
-        int j = h(key, i);
-        if(T[j] == key)
-        {
-            return j;
-        }else if(T[j] == NIL || i >= M)
-        {
-            return NIL;
-        }else
-        {
-            i = i+1;
-        }
-    }
-}
-
-void init()
-{
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < L; ++j) {
-                H[i][j] = NIL;
-        }
-    }
-}
 int main() {
-    init();
-    char command[10] = {};
-    char value[10] = {};
-
-    int count  = 0;
-    while(1)
+    int i, n, h;
+    char str[h], com[9];
+    for(i = 0; i < n;++i)
     {
-        scanf("%s %s", command, value);
-        switch(command[0])
-        {
-            case 'i':
-                printf("insert >> %d\n", insert(H[0], getKey(value)));
-                break;
-            case 'f':
-                printf("search >> %d\n", search(H[0], getKey(value)));
-                break;
-        }
-        //++count;
+    	scanf("%s %s", com, str);
+    	
+    	if(com[0] == 'i')
+    	{
+    		insert(str);
+    	}else
+    	{
+    		if(find(str)){
+    			printf("yes\n");
+    		}else{
+    			printf("no\n");
+    		}
+    	}
     }
-
     return 0;
 }
