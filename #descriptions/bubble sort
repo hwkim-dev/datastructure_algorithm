@@ -1,4 +1,4 @@
- ## bubble sort
+<h>bubble sort</h>
  ```bash
    bubbleSort(A, N)
    flag = 1
