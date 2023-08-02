@@ -1,5 +1,10 @@
 #exclude every thing
-/*
+*.exe
+*.cmake
+*.txt
+*.log
+.*
+
 
 #include c files
 !/.c
