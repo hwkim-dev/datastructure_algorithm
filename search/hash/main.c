@@ -6,6 +6,7 @@
 #define L 14
 
 char H[M][L] = {};
+long long getKeys(char str[]);
 
 int getChar(char ch)
 {
@@ -24,7 +25,7 @@ int getChar(char ch)
     }
 }
 
-long long getKey(char str[])
+long long getKeys(char str[])
 {
     long long sum = 0, p = 1;
     for (int i = 0; i < strlen(str); ++i) {
@@ -46,32 +47,32 @@ int h2(int key)
 
 int find(char str[])
 {
-	long long key, i , h;
-	key = getkey(str);
-	for(i = 0;; i++)
-	{
-		h = (h1(key)) + i * h2(key) % M;
-		if(strcmp(H[h], str) == 0) return 1;
-		else if(strlen(H[h]) == 0) return 0;
-	}
-	return 0;
+    long long key, i , h;
+    key = getKeys(str);
+    for(i = 0;; i++)
+    {
+        h = (h1(key)) + i * h2(key) % M;
+        if(strcmp(H[h], str) == 0) return 1;
+        else if(strlen(H[h]) == 0) return 0;
+    }
+    return 0;
 }
 
 int insert(char str[])
 {
-	long long key, i, h;
-	key = getkey(str);
-	
-	for(i = 0;; i++)
-	{
-		h = (h1(key) + i * h2(key)) % M;
-		if(strcmp(H[h], str) == 0) return 1;
-		else if(strlen(H[h]) == 0)
-		{
-			strcpy(H[h], str);
-			return 0;
-		}
-	}
+    long long key, i, h;
+    key = getKeys(str);
+
+    for(i = 0;; i++)
+    {
+        h = (h1(key) + i * h2(key)) % M;
+        if(strcmp(H[h], str) == 0) return 1;
+        else if(strlen(H[h]) == 0)
+        {
+            strcpy(H[h], str);
+            return 0;
+        }
+    }
 }
 
 int main() {
@@ -79,19 +80,19 @@ int main() {
     char str[h], com[9];
     for(i = 0; i < n;++i)
     {
-    	scanf("%s %s", com, str);
-    	
-    	if(com[0] == 'i')
-    	{
-    		insert(str);
-    	}else
-    	{
-    		if(find(str)){
-    			printf("yes\n");
-    		}else{
-    			printf("no\n");
-    		}
-    	}
+        scanf("%s %s", com, str);
+
+        if(com[0] == 'i')
+        {
+            insert(str);
+        }else
+        {
+            if(find(str)){
+                printf("yes\n");
+            }else{
+                printf("no\n");
+            }
+        }
     }
     return 0;
 }
