@@ -13,6 +13,7 @@ C-language for studing datastructure &amp; algorithm
 | bubble sort | [🔗](algorithm/sort_algorithm/main.c) |
 | selection sort | [🔗](algorithm/sort_algorithm/main.c) |
 | stable sort |  [🔗](algorithm/stable_Sort/main.c) |
+| the number of inversion |  [🔗](algorithm/the_Number_Of_Inversion/main.c) |
 | double linked list | [🔗](dataStructure/double_Linked_List/main.c) |
 | queue | [🔗](dataStructure/queue/main.c) |
 | stack | [🔗](dataStructure/stack/main.c) |
@@ -22,3 +23,7 @@ C-language for studing datastructure &amp; algorithm
 | binary search | [🔗](search/binary_Search/main.c) |
 | hash | [🔗](search/hash/main.c) |
 | linear search | [🔗](search/linear_Search/main.c) |
+| binary search tree | [🔗](tree/binary_Search_Tree/main.c) |
+| binary tree | [🔗](tree/binary_Tree/main.c) |
+| rooted tree | [🔗](tree/rooted_Trees/main.c) |
+| tree walk | [🔗](tree/tree_Walk/main.c) |
