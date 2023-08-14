@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NODENOTFOUND 2
-#define YES 1
 #define NO -1
+#define YES 1
+#define NODENOTFOUND 2
+#define ERROR 3
+
 struct Node
 {
     int key;
@@ -15,7 +17,7 @@ struct Node *root, *NIL;
 
 void insert(int key)
 {
-    struct Node *prev_Node;
+    struct Node *prev_Node = NIL;
     struct Node *find = root;
     struct Node *new_Node = malloc(sizeof(struct Node));
     new_Node->key = key;
@@ -26,7 +28,7 @@ void insert(int key)
         if(find->key > key)
         {
             find = find->left;
-        }else //if(find.key < key)
+        }else //if(find->key < key)
         {   
             find = find->right;
         }
@@ -35,7 +37,6 @@ void insert(int key)
     if(prev_Node == NIL)
     {
         root = new_Node;
-        root.parent = NIL;
     }else if(new_Node->key < prev_Node->key)
     {
         prev_Node->left = new_Node;
@@ -61,7 +62,7 @@ void in_Order(struct Node *n)
     in_Order(n->right);
 }
 
-Node* find(int search_Key)
+struct Node * find(int search_Key)
 {
     struct Node *pointer = root;
     while(pointer != NIL)
@@ -79,37 +80,67 @@ Node* find(int search_Key)
     }
     return pointer;
 }
-Node * tree_Successor(Node )
+struct Node * get_Minimum(struct Node * current)
 {
-
+    while(current->left != NIL)
+    {
+        current = current->left;
+    }
+    return current;
 }
 
-int delete(Node *eliminate_Node)
+void delete(struct Node *eliminate_Node)
 {
-    struct Node *prev_Node = eliminate_Node.parent;
-    //자식이 한명
-    if(eliminate_Node.left == NIL ^ eliminate_Node.right == NIL)
-    {
-        
-    //자식이없음
-    }else if(eliminate_Node.left == NIL && eliminate_Node.right == NIL)
-    {
+    struct Node *prev_Node = eliminate_Node->parent;
+    struct Node *left_Child_Node = eliminate_Node->left;
+    struct Node *right_Child_Node = eliminate_Node->right;
 
-    //자식이 두명
+    //eliminate_Node has one child
+    if(left_Child_Node == NIL ^ right_Child_Node == NIL)
+    {
+        if(prev_Node->left == eliminate_Node)
+        {
+            prev_Node->left = (left_Child_Node == NIL) ? right_Child_Node : left_Child_Node;
+            prev_Node->left->parent = prev_Node;
+        }else //prev_Node->right == eliminate_Node
+        {
+            prev_Node->right = (left_Child_Node == NIL) ? right_Child_Node : left_Child_Node;
+            prev_Node->right->parent = prev_Node;
+        }
+        free(eliminate_Node);
+
+    //eliminate_Node has no child
+    }else if(eliminate_Node->left == NIL && eliminate_Node->right == NIL)
+    {
+        if(prev_Node->left == eliminate_Node)
+        {
+            prev_Node->left = NIL;
+        }else //prev_Node->right == eliminate_Node
+        {
+            prev_Node->right = NIL;
+        }
+        free(eliminate_Node);
+    //eliminate_Node has two child
     }else
     {
-
-    }
-    struct Node *current_Node = eliminate_Node;
-    //struct Node *left = NIL;
-    //struct Node *right = NIL;
-    if(current_Node == root)
-    {
-        current_Node
-    }else
-    {
-        prev_Node = current_Node.parent;
-        prev_Node.
+        struct Node *minimum = get_Minimum(eliminate_Node->right);
+        eliminate_Node->key = minimum->key;
+        if(minimum->parent == root && minimum->right == NIL)
+        {
+            root->right = NIL;
+        }else if(minimum->parent == root && minimum->right != NIL)
+        {   
+            root->right = minimum->right;
+            minimum->right->parent = root;
+        }else if(minimum->right != NIL)
+        {
+            minimum->parent->left = minimum->right;
+            minimum->right->parent = minimum->parent;
+        }else
+        {
+            print("Error!");
+        }
+        free(minimum);
     }
 }
 
@@ -159,10 +190,10 @@ int main() {
             if(eliminate_Node != NIL)
             {
                 delete(eliminate_Node);
-                printf("deleted");
+                printf("deleted\n");
             }else
             {
-                printf("node not found");
+                printf("node not found\n");
             }
         }else
         {
