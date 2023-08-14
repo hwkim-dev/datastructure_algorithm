@@ -80,6 +80,7 @@ struct Node * find(int search_Key)
     }
     return pointer;
 }
+<<<<<<< Updated upstream
 struct Node * get_Minimum(struct Node * current)
 {
     while(current->left != NIL)
@@ -88,6 +89,9 @@ struct Node * get_Minimum(struct Node * current)
     }
     return current;
 }
+=======
+
+>>>>>>> Stashed changes
 
 void delete(struct Node *eliminate_Node)
 {
